@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <h2>Cores</h2>
+    <ul>
+        <li v-for="(nome, i) in cores">{{nome}} - {{i + 1}}</li>
+    </ul>
+    <h2>Pessoas</h2>
+    <ul v-for="pessoa in pessoas">
+        <li>{{pessoa.nome}}</li>
+        <li>{{pessoa.idade}}</li>
+        <li>{{pessoa.peso}}</li> 
+    </ul>
+</div>
+
+<script src="app.js"></script>
