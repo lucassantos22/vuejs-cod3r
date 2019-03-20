@@ -9,8 +9,8 @@
     <button @click="alterarCondicao">Alternar</button>
     <p v-if="condicao==true">Você quer me ver ...</p>
     <p v-else>...ou eu</p>
-    <p v-show="condicao==true">Você quer me ver ...</p>
-    <p v-show="condicao==false">...ou eu</p>
+    <p v-show="condicao">Você quer me ver ...</p>
+    <p v-show="!condicao">...ou eu</p>
   </div>
 
   <!-- 2) Exiba em uma <ul> um array de elementos da sua escolha.
@@ -42,12 +42,16 @@
           (dica: use v-for e v-if na resolução) -->
   <h2>#04</h2>
   <ul v-for="p in pessoa">
-    <li v-if="Array.isArray(p)">
-      <ul v-for="n in p">
-        <li>{{n}}</li>
+    <template v-if="Array.isArray(p)">
+      <ul>
+        <li v-for="nota in p">
+          {{nota}}
+        </li>
       </ul>
-    </li>
-    <li v-else>{{p}}</li>
+    </template>
+    <template v-else>
+      {{p}}
+    </template>
   </ul>
 </div>
 
