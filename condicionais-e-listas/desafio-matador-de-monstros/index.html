@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <title>Matador de Monstro</title>
@@ -6,33 +7,43 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
     <script src="https://unpkg.com/vue"></script>
 </head>
+
 <body>
     <div id="app">
         <div class="panel scores">
             <div class="score">
                 <h1>Jogador</h1>
                 <div class="life-bar">
-                    <div class="life"></div>
+                    <div class="life" :class="{danger: playerLife<=20}" :style="{width: playerLife + '%'}"></div>
                 </div>
                 <div>{{ playerLife }}%</div>
             </div>
             <div class="score">
                 <h1>Monstro</h1>
                 <div class="life-bar">
-                    <div class="life"></div>
+                    <div class="life" :class="{danger: monsterLife<=20}" :style="{width: monsterLife + '%'}"></div>
                 </div>
                 <div>{{ monsterLife }}%</div>
             </div>
         </div>
-        <div class="panel result"></div>
+        <div v-if="hasResult" class="panel result">
+            <div v-if="playerLife<=0" class="lose">Você perdeu! :)</div>
+            <div v-else class="win">Você ganhou! :)</div>
+        </div>
         <div class="panel buttons">
-            <button>Ataque</button>
-            <button>Ataque especial</button>
-            <button>Curar</button>
-            <button>Desistir</button>
-            <button>Iniciar jogo</button>
+            <template v-if="gameStatus">
+                <button class="btn attack" @click="atacar">Ataque</button>
+                <button class="btn special-attack" @click="atacar(true)">Ataque especial</button>
+                <button class="btn heal" @click="curar">Curar</button>
+                <button class="btn give-up" @click="gameStatus = false">Desistir</button>
+            </template>
+            <button class="btn new-game" v-else @click="iniciarJogo">Iniciar novo jogo</button>
+        </div>
+        <div v-if="logs.length" class="panel logs">
+            <p v-for="log in logs">{{log}}</p>
         </div>
     </div>
     <script src="app.js"></script>
 </body>
+
 </html>
