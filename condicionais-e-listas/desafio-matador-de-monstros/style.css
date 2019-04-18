@@ -102,3 +102,9 @@ html {
     background-color: #bbbb;
     color:black;
 }
+
+.logs{
+    text-align: center;
+    background: purple;
+    color: white;
+}
