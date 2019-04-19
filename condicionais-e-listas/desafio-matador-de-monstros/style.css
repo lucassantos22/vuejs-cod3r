@@ -105,6 +105,13 @@ html {
 
 .logs{
     text-align: center;
-    background: purple;
     color: white;
+}
+
+.monstro{
+    background-color: red;
+}
+
+.player{
+    background-color: green;
 }
