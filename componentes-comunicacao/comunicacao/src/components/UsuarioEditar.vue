@@ -20,7 +20,7 @@ export default {
     methods: {
         alterarNome(){
             this.nome = "Jennifer";
-            barramento.$emit('nomeAlteradoIrmaoPraIrmao', this.nome);
+            barramento.alterarNome(this.nome);
         }
     },
     

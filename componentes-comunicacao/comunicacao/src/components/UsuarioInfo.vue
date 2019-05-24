@@ -28,7 +28,7 @@ export default {
         }
     },
     created() {
-        barramento.$on("nomeAlteradoIrmaoPraIrmao", nome=> this.nome = nome);
+        barramento.quandoNomeMudar(nome=> this.nome = nome);
     },
 }
 </script>
