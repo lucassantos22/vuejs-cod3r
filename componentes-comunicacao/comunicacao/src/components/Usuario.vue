@@ -7,7 +7,7 @@
         <hr>
         <div class="componentes">
             <app-usuario-info :nome="nome" @alterarNomeFilho="nome=$event"/>
-            <app-usuario-editar />
+            <app-usuario-editar :nome="nome" @nomeAlteradoIrmao="nome = $event"/>
         </div>
     </div>
 </template>

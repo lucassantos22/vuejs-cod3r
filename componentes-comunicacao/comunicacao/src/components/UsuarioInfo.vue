@@ -8,6 +8,9 @@
 </template>
 
 <script>
+
+import barramento from '@/barramento.js';
+
 export default {
     props:{
         nome:{
@@ -23,6 +26,9 @@ export default {
         alterarNomeFilho(){
             this.$emit("alterarNomeFilho", "João");
         }
+    },
+    created() {
+        barramento.$on("nomeAlteradoIrmaoPraIrmao", nome=> this.nome = nome);
     },
 }
 </script>
