@@ -7,7 +7,20 @@
 </template>
 
 <script>
-export default {}
+export default {
+    created() {
+        console.log('Criou citacao!');
+    },
+    destroyed() {
+        console.log('Destruiu citacao!');
+    },
+    activated() {
+        console.log('Ativou citacao!');
+    },
+    deactivated() {
+        console.log('Desativou citacao!');
+    }
+}
 </script>
 
 <style scoped>

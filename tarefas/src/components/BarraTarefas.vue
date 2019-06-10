@@ -16,7 +16,7 @@ export default {
           const tarefasFeitas = this.tarefas.filter(el=>{
               return el.status || 0;
           });
-          return (tarefasFeitas.length/this.tarefas.length) * 100;
+          return Math.round((tarefasFeitas.length/this.tarefas.length) * 100)
       }
   },
 };
@@ -24,9 +24,9 @@ export default {
 
 <style>
     .progress{
-        width: 60em;
+        width: 1025px;
         margin: 20px;
-        height: 20px;
+        height: 30px;
         color: #e9ecef
     }
 

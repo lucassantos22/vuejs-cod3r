@@ -29,8 +29,8 @@ export default {
 div.tarefa {
   cursor: pointer;
   padding: 30px;
-  margin: 20px;
-  display: inline;
+  margin: 25px;
+  display: inline-block;
   border-radius: 8%;
 }
 
@@ -51,4 +51,5 @@ p {
   font-size: 26px;
   color: #ffce0d;
 }
+
 </style>

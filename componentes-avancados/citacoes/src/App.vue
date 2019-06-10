@@ -1,8 +1,12 @@
 <template>
 	<div id="app">
-		<Citacao />
-		<Citacoes />
-		<Sobre />
+		<keep-alive>
+			<component :is="componente"/>
+		</keep-alive>
+		<span>
+			<button v-on:click="componente = 'Citacoes'"> Citacoes </button>
+			<button @click="componente = 'Sobre'"> Sobre </button>
+		</span>
 	</div>
 </template>
 
@@ -12,7 +16,12 @@ import Citacoes from './components/Citacoes'
 import Sobre from './components/Sobre'
 
 export default {
-	components: { Citacoes, Sobre }
+	components: { Citacoes, Sobre },
+	data(){
+		return{
+			componente: "Citacoes",
+		}
+	}
 }
 </script>
 

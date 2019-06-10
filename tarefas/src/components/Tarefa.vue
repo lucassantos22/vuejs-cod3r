@@ -29,6 +29,7 @@ export default {
 
 <style>
     .input-group{
+        min-width: 500px;
         width: 50%;
         margin: 0 auto;
         margin-bottom: 50px;
