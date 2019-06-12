@@ -1,17 +1,17 @@
 <template>
-	<div id="app">
+	<div>
 		<h1>Registrar Reclamação</h1>
 		<div class="conteudo">
 			<form class="painel">
-				<div class="cabecalho">Formulário</div>
+				<div class="cabecalho"><span>Formulário</span></div>
 				<Rotulo nome="E-mail">
-					<input type="text">
+					<input type="text" v-model="usuario.email">
 				</Rotulo>
 				<Rotulo nome="Senha">
-					<input type="password">
+					<input type="password" v-model="usuario.senha">
 				</Rotulo>
 				<Rotulo nome="Idade">
-					<input type="number">
+					<input type="number" v-model="usuario.idade">
 				</Rotulo>
 				<Rotulo nome="Mensagem">
 					<textarea name="" cols="30" rows="5"></textarea>
@@ -37,15 +37,15 @@
 				<button>Enviar</button>
 			</form>
 			<div class="painel">
-				<div class="cabecalho">Resultado</div>
+				<div class="cabecalho"><span>Resultado</span></div>
 				<Rotulo nome="E-mail">
-					<span>???</span>
+					<span>{{usuario.email}}</span>
 				</Rotulo>
 				<Rotulo nome="Senha">
-					<span>???</span>
+					<span>{{usuario.senha}}</span>
 				</Rotulo>
 				<Rotulo nome="Idade">
-					<span>???</span>
+					<span>{{usuario.idade}}</span>
 				</Rotulo>
 				<Rotulo nome="Mensagem">
 					<span>???</span>
@@ -73,7 +73,14 @@ import Escolha from './components/Escolha.vue'
 
 export default {
 	name: 'app',
-	components: { Rotulo, Escolha }
+	components: { Rotulo, Escolha },
+	data(){
+		return{
+			usuario:{
+
+			}
+		}
+	}
 }
 </script>
 
@@ -113,6 +120,10 @@ body {
 	padding: 10px 0px;
 	border-radius: 5px;
 	font-size: 1.4rem;
+}
+
+.painel .cabecalho span{
+	margin-left: 10px;
 }
 
 #app form button {
