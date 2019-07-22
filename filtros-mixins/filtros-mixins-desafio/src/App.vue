@@ -17,6 +17,10 @@
 		<!-- Exercício 3 -->
 		<!-- Implementar os exercicios 1 e 2 com propriedade computada -->
 
+		<hr>
+		<input type="text" :value="valor" @input="valor = $event.target.value"/>
+		{{valor}}
+
 		<!-- Exercício 4 -->
 		<!-- Compartilhe a propriedade computada via mixin -->
 		<hr>
@@ -34,6 +38,11 @@ export default {
 	filters:{
 		espacoParaVirgula(valor){
 			return valor.replace(" ",",");
+		}
+	},
+	data(){
+		return{
+			valor:""
 		}
 	}
 }

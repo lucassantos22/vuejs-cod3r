@@ -2,7 +2,7 @@
 	<div>
 		<h1>Registrar Reclamação</h1>
 		<div class="conteudo">
-			<form class="painel">
+			<form class="painel" v-if="!enviado">
 				<div class="cabecalho"><span>Formulário</span></div>
 				<Rotulo nome="E-mail">
 					<input type="text" v-model.lazy.trim="usuario.email">
@@ -14,29 +14,31 @@
 					<input type="number" v-model.number="usuario.idade">
 				</Rotulo>
 				<Rotulo nome="Mensagem">
-					<textarea name="" cols="30" rows="5"></textarea>
+					<textarea name="" cols="30" rows="5" v-model="usuario.mensagem"></textarea>
 				</Rotulo>
 				<Rotulo nome="Características do Problema">
-					<span class="mr-4"><input type="checkbox" value="reproduzivel"> Reproduzível</span>
-					<span><input type="checkbox" value="intermitente"> Intermitente</span>
+					<span class="mr-4"><input type="checkbox" value="Reproduzivel" v-model="caracteristicas"> Reproduzível</span>
+					<span><input type="checkbox" value="Intermitente" v-model="caracteristicas"> Intermitente</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span class="mr-4"><input type="radio"> Web</span>
-					<span class="mr-4"><input type="radio"> Mobile</span>
-					<span><input type="radio"> Outro</span>
+					<span class="mr-4"><input type="radio" value="Web" v-model="produto"> Web</span>
+					<span class="mr-4"><input type="radio" value="Mobile" v-model="produto"> Mobile</span>
+					<span><input type="radio" value="Outro" v-model="produto"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<select name="" id="">
-						<option></option>
+					<select name="" id="" v-model="prioridades">
+						<option value="Baixa">Baixa</option>
+						<option value="Media">Média</option>
+						<option value="Alta">Alta</option>
 					</select>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<Escolha />
+					<Escolha v-model="escolha" @input="escolha = $event"/>
 				</Rotulo>
 				<hr>
-				<button>Enviar</button>
+				<button @click.prevent="enviarFormulario()">Enviar</button>
 			</form>
-			<div class="painel">
+			<div class="painel" v-else>
 				<div class="cabecalho"><span>Resultado</span></div>
 				<Rotulo nome="E-mail">
 					<span>{{usuario.email}}</span>
@@ -48,19 +50,23 @@
 					<span>{{usuario.idade}}</span>
 				</Rotulo>
 				<Rotulo nome="Mensagem">
-					<span>???</span>
+					<span>{{usuario.mensagem}}</span>
 				</Rotulo>
-				<Rotulo nome="Marque as Opções">
-					<span>???</span>
+				<Rotulo nome="Características do Problema">
+					<span>
+						<ul>
+							<li v-for="c, i in caracteristicas" :key="c">{{i + 1}} - {{c}}</li>
+						</ul>
+					</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span>???</span>
+					<span>{{produto}}</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<span>???</span>
+					<span>{{prioridades}}</span>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<span>???</span>
+					<span>{{escolha ? "Sim" : "Não"}}</span>
 				</Rotulo>
 			</div>
 		</div>
@@ -78,9 +84,19 @@ export default {
 		return{
 			usuario:{
 
-			}
+			},
+			prioridades:"Baixa",
+			caracteristicas:[],
+			produto:"Web",
+			escolha: true,
+			enviado: false
 		}
-	}
+	},
+	methods: {
+		enviarFormulario(){
+			this.enviado = true;
+		}
+	},
 }
 </script>
 
