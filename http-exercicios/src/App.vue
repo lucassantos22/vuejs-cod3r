@@ -16,13 +16,18 @@
     </b-card>
     <hr>
     <b-button size="lg" variant="primary" @click="enviar">Enviar</b-button>
+    <b-button size="lg" variant="success" class="ml-2" @click="obterUsuarios">Obter Usuários</b-button>
+    <hr>
+    {{usuarios}}
   </div>
 </template>
 
 <script>
+// import axios from './src/plugins/axios'; IMPORTAR DE FORMA LOCAL
 export default {
   data() {
     return {
+      usuarios: [],
       usuario: {
         nome: "",
         email: ""
@@ -31,9 +36,13 @@ export default {
   },
   methods: {
     enviar() {
-      this.$http
-        .post("usuarios.json", this.usuario)
-        .then(this.usuario = {});
+      this.$http.post("usuarios.json", this.usuario).then((this.usuario = {}));
+    },
+    obterUsuarios() {
+      this.$http.get("usuarios.json").then(res => {
+        this.usuarios = res.data;
+      });
+      console.log(this.usuarios);
     }
   }
   // destroyed(){
