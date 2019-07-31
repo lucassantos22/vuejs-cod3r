@@ -17,8 +17,12 @@
     <hr>
     <b-button size="lg" variant="primary" @click="enviar">Enviar</b-button>
     <b-button size="lg" variant="success" class="ml-2" @click="obterUsuarios">Obter Usuários</b-button>
+    <div v-for="usuario in usuarios" :key="usuario.id">
     <hr>
-    {{usuarios}}
+    <p><b>Usuario:</b> {{usuario.nome}}</p>
+    <p><b>E-mail:</b> {{usuario.email}}</p>
+    <p><b>Id:</b> {{usuario.id}}</p>
+    </div>
   </div>
 </template>
 
