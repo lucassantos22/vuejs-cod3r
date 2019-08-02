@@ -1,13 +1,19 @@
-import Vue from "vue";
-import axios from "axios";
+import Vue from 'vue';
+import axios from 'axios';
 
 // axios.defaults.baseURL = 'https://curso-vuejs-9eded.firebaseio.com/';
+// axios.defaults.headers['Authorization'] = 'abc123'
 
 Vue.use({
-    install(Vue){
+    install(Vue) {
         // Vue.prototype.$http = axios;
         Vue.prototype.$http = axios.create({
-            baseURL: 'https://curso-vuejs-9eded.firebaseio.com/'
+            baseURL: 'https://curso-vuejs-9eded.firebaseio.com/',
+            headers: {
+                get: {
+                    "Authorization": 'abc123;'
+                }
+            }
         });
 
         // Interceptar Requisições
@@ -19,8 +25,8 @@ Vue.use({
         // Interceptar Respostas
         Vue.prototype.$http.interceptors.response.use(res => {
             const arr = [];
-            for(let chave in res.data){
-                arr.push({id: chave, ...res.data[chave]})
+            for (let chave in res.data) {
+                arr.push({ id: chave, ...res.data[chave] })
             }
 
             res.data = arr;
