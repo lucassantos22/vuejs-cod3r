@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="container">
     <h1>HTTP com Axios</h1>
+    <b-alert show dismissible v-for="mensagem in mensagens" :variant="mensagem.tipo">{{mensagem.texto}}</b-alert>
     <b-card>
       <b-form-group label="Nome:">
         <b-form-input type="text" size="lg" v-model="usuario.nome" placeholder="Informe o Nome"/>
@@ -22,6 +23,9 @@
     <p><b>Usuario:</b> {{usuario.nome}}</p>
     <p><b>E-mail:</b> {{usuario.email}}</p>
     <p><b>Id:</b> {{usuario.id}}</p>
+    <br>
+    <b-button variant="warning" size="lg" @click="carregar(usuario.id)">Carregar</b-button>
+    <b-button variant="danger" size="lg" class="ml-2" @click="excluir(usuario.id)">Excluir</b-button>
     </div>
   </div>
 </template>
@@ -31,7 +35,9 @@
 export default {
   data() {
     return {
+      mensagens: [],
       usuarios: [],
+      id: null,
       usuario: {
         nome: "",
         email: ""
@@ -40,13 +46,38 @@ export default {
   },
   methods: {
     enviar() {
-      this.$http.post("usuarios.json", this.usuario).then((this.usuario = {}));
+      this.$http.post("usuarios.json", this.usuario)
+      .then(() => {
+        this.limpar();
+        this.mensagens.push({
+          texto: "Usuario salvo",
+          tipo: "success"
+        })
+      })
+      .catch(err=>{
+        this.mensagens.push({
+          texto: "Algo ocorreu errado",
+          tipo: "danger"
+        })
+      })
     },
     obterUsuarios() {
       this.$http.get("usuarios.json").then(res => {
         this.usuarios = res.data;
       });
       console.log(this.usuarios);
+    },
+    limpar(){
+      this.usuario = {};
+      this.id = null;
+      this.mensagens = [];
+    },
+    carregar(id){
+      this.id = id;
+      this.usuario = {...this.usuarios[id]}
+    },
+    excluir(id){
+      this.$http.delete(`/usuarios/${id}.json`).then(() => this.limpar());
     }
   }
   // destroyed(){
