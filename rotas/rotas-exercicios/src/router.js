@@ -12,7 +12,8 @@ export default new Router({
     mode: 'history', // Ou hash
     routes: [{
         path: '/',
-        component: Inicio
+        component: Inicio,
+        name: 'inicio'
     },
     {
         path: '/usuario', 
@@ -25,12 +26,14 @@ export default new Router({
             },
             {
                 path: ':id',
-                component: UsuarioDetalhe
+                component: UsuarioDetalhe,
+                props: true
             },
             {
                 path: ':id/editar',
                 component: UsuarioEditar,
-                props: true
+                props: true,
+                name: "editarUsuario"
             },
         ]
     }]

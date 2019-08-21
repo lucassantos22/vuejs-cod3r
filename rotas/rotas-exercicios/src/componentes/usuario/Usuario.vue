@@ -1,8 +1,9 @@
 <template>
     <div id="usuario">
         <h2>Usuarios</h2>
-        <button sucesso @click="voltar"> Voltar </button>
+        <hr>
         <router-view/>
+        <button sucesso @click="voltar"> Voltar </button>
     </div>
 </template>
 
@@ -10,7 +11,7 @@
 export default {
     methods: {
         voltar(){
-            this.$router.push('/');
+            this.$router.push({name: 'inicio'});
         }
     },
 }
