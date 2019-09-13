@@ -7,9 +7,9 @@ import UsuarioEditar from "./componentes/usuario/UsuarioEditar";
 import UsuarioLista from "./componentes/usuario/UsuarioLista";
 import Menu from './componentes/template/Menu'
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
+const router =  new Router({
     mode: 'history', // Ou hash
     scrollBehavior(to, from, savedPosition){
         if(savedPosition){
@@ -28,6 +28,10 @@ export default new Router({
         components: {
             defaut: Inicio,
             menu: Menu
+        },
+        beforeEnter(to, from, next){
+            console.log('Na rota principal');
+            next();
         }
     },
     {
@@ -59,4 +63,12 @@ export default new Router({
         path: '*',
         redirect: '/'
     }]
-})
+});
+
+router.beforeEach((to, from, next)=>{
+    console.log(to);
+    console.log(from);
+    next();
+});
+
+export default router;
