@@ -29,7 +29,7 @@ export default {
                 preco: this.preco
             }
             this.sequencia++
-            this.$store.state.produtos.push(produto);
+            this.$store.commit('addProduto', produto);
         }
     }
 }
