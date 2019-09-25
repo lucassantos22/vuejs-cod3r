@@ -29,7 +29,8 @@ export default {
                 preco: this.preco
             }
             this.sequencia++
-            this.$store.commit('addProduto', produto);
+            this.$store.dispatch('addProduto', produto);
+            // this.$store.commit('addProduto', produto);
         }
     }
 }
