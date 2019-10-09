@@ -20,6 +20,10 @@ export default new Router({
         },{
             path: '/portfolio',
             component: Portfolio
+        },
+        {
+            path: '*',
+            redirect: '/'
         }
     ]
 })

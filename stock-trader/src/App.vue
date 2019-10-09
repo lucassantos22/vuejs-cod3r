@@ -8,7 +8,7 @@
 
 <script>
 
-import Header from './components/Header';
+import Header from './components/utils/Header';
 import Footer from './components/utils/Footer';
 
 export default {
@@ -23,6 +23,5 @@ export default {
 </script>
 
 <style>
-
 </style>
 
