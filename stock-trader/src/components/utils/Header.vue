@@ -3,7 +3,7 @@
         <v-toolbar
                 dark
                 src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
-        >
+         height="70px">
 
             <v-toolbar-title><span>S</span>ANTOS <span>I</span>NVESTIMENTOS</v-toolbar-title>
 
