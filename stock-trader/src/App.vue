@@ -2,7 +2,7 @@
 	<v-app>
 		<v-main>
 			<Header/>
-			<v-container fluid>
+			<v-container>
 				<router-view></router-view>
 			</v-container>
 		</v-main>
@@ -16,6 +16,9 @@ import Header from './components/Header'
 export default {
 	components:{
 		Header
+	},
+	created(){
+		this.$store.dispatch('initStocks');
 	}
 }
 

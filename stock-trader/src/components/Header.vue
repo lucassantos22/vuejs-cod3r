@@ -4,7 +4,7 @@
             <span>Stock</span>
             <span class="font-weight-light">Trader</span>
         </v-toolbar-title>
-        <v-toolbar-items>
+        <v-toolbar-items> <!-- Não necessita router-link-->
             <v-btn text to='/'>Início</v-btn>
             <v-btn text to='/portfolio'>Portfólio</v-btn>
             <v-btn text to='/stocks'>Ações</v-btn>
@@ -40,7 +40,6 @@
 <script>
 
 export default {
-    
 }
 
 </script>
