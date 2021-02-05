@@ -13,7 +13,7 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items>
-            <v-btn text>Finalizar Dia</v-btn>
+            <v-btn text @click='endDay'>Finalizar Dia</v-btn>
             <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
@@ -35,7 +35,7 @@
             </v-menu>
             <v-layout align-center>
                 <span class="text-uppercase grey--text text--darken-2">
-                    Saldo: {{funds}}
+                    Saldo: {{funds | currency}}
                 </span>
             </v-layout>
         </v-toolbar-items>
@@ -48,6 +48,11 @@ export default {
     computed: {
         funds(){
             return this.$store.getters.funds;
+        }
+    },
+    methods: {
+        endDay(){
+            this.$store.dispatch('randozimeStocks');
         }
     }
 }
