@@ -1,6 +1,6 @@
 <template>
     <v-layout row wrap class='mt-3'>
-        <Stock v-for='stock in stocksPortfolio' :key='stock.id' :stock='stock'/>
+        <Stock v-for='stock in stockPortfolio' :key='stock.id' :stock='stock'/>
     </v-layout>
 </template>
 
@@ -14,11 +14,10 @@ export default {
         Stock
     },
     computed: {
-        stocksPortfolio(){
+        stockPortfolio(){
             return this.$store.getters.stocksPortfolio
         }
     }
-
 }
 
 </script>

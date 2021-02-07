@@ -25,10 +25,10 @@
                     </v-btn>
                 </template>
                 <v-list>
-                    <v-list-item>
+                    <v-list-item @click='saveData'>
                         <v-list-item-title>Salvar Dados</v-list-item-title>
                     </v-list-item>
-                    <v-list-item>
+                    <v-list-item @click='loadDataLocal'>
                         <v-list-item-title>Carregar Dados</v-list-item-title>
                     </v-list-item>
                 </v-list>              
@@ -53,6 +53,17 @@ export default {
     methods: {
         endDay(){
             this.$store.dispatch('randozimeStocks');
+        },
+        saveData(){
+            const {funds, stocksPortfolio, stocks } = this.$store.getters;
+            this.$http.put('data.json', {
+                funds,
+                stocksPortfolio,
+                stocks
+            });
+        },
+        loadDataLocal() {
+            this.$store.dispatch('loadData');
         }
     }
 }

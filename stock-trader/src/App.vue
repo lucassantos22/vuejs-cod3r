@@ -28,4 +28,5 @@ export default {
 	html {
 		overflow: hidden;
 	}
+
 </style>
